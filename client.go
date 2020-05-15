@@ -1,10 +1,12 @@
 package htest
 
 import (
-	"github.com/stretchr/testify/assert"
+	"bytes"
 	"io"
 	"net/http"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 type (
@@ -42,28 +44,46 @@ func (c Client) request(method, path string, body io.Reader) *Request {
 	return c.NewRequest(req)
 }
 
-func (c Client) Get(path string) *Request {
-	return c.request(GET, path, nil)
+func (c Client) Get(path string, body ...io.Reader) *Request {
+	if len(body) == 0 {
+		return c.request(GET, path, bytes.NewReader([]byte("")))
+	}
+	return c.request(GET, path, body[0])
 }
 
-func (c Client) Head(path string) *Request {
-	return c.request(HEAD, path, nil)
+func (c Client) Head(path string, body ...io.Reader) *Request {
+	if len(body) == 0 {
+		return c.request(HEAD, path, bytes.NewReader([]byte("")))
+	}
+	return c.request(HEAD, path, body[0])
 }
 
-func (c Client) Trace(path string) *Request {
-	return c.request(TRACE, path, nil)
+func (c Client) Trace(path string, body ...io.Reader) *Request {
+	if len(body) == 0 {
+		return c.request(TRACE, path, bytes.NewReader([]byte("")))
+	}
+	return c.request(TRACE, path, body[0])
 }
 
-func (c Client) Options(path string) *Request {
-	return c.request(OPTIONS, path, nil)
+func (c Client) Options(path string, body ...io.Reader) *Request {
+	if len(body) == 0 {
+		return c.request(OPTIONS, path, bytes.NewReader([]byte("")))
+	}
+	return c.request(OPTIONS, path, body[0])
 }
 
-func (c Client) Connect(path string) *Request {
-	return c.request(CONNECT, path, nil)
+func (c Client) Connect(path string, body ...io.Reader) *Request {
+	if len(body) == 0 {
+		return c.request(CONNECT, path, bytes.NewReader([]byte("")))
+	}
+	return c.request(CONNECT, path, body[0])
 }
 
-func (c Client) Delete(path string) *Request {
-	return c.request(DELETE, path, nil)
+func (c Client) Delete(path string, body ...io.Reader) *Request {
+	if len(body) == 0 {
+		return c.request(DELETE, path, bytes.NewReader([]byte("")))
+	}
+	return c.request(DELETE, path, body[0])
 }
 
 func (c Client) Post(path string, body io.Reader) *Request {
