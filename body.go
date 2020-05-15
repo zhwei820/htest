@@ -4,12 +4,14 @@ import (
 	"bytes"
 	"encoding/json"
 	"encoding/xml"
-	"github.com/basgys/goxml2json"
-	"github.com/stretchr/testify/assert"
-	"github.com/tidwall/gjson"
+	"fmt"
 	"io/ioutil"
 	"testing"
 	"time"
+
+	xml2json "github.com/basgys/goxml2json"
+	"github.com/stretchr/testify/assert"
+	"github.com/tidwall/gjson"
 )
 
 type (
@@ -142,6 +144,10 @@ func (j *JSON) Body() []byte {
 
 func (j *JSON) Bind(obj interface{}) error {
 	return json.Unmarshal(j.body, obj)
+}
+
+func (j *JSON) Dump() {
+	fmt.Println(string(j.body))
 }
 
 func (x *XML) Exist(key string) *XML {
