@@ -1,4 +1,4 @@
-module github.com/Hexilee/htest
+module github.com/zhwei820/htest
 
 require (
 	github.com/basgys/goxml2json v1.1.0
