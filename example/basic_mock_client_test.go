@@ -1,7 +1,7 @@
 package example
 
 import (
-	"github.com/Hexilee/htest"
+	"github.com/zhwei820/htest"
 	"testing"
 )
 

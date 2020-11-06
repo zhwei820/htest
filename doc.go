@@ -1,6 +1,6 @@
 /*
 htest is a http test package
 
-import "github.com/Hexilee/htest"
+import "github.com/zhwei820/htest"
 */
 package htest

@@ -70,11 +70,11 @@ func TestRequest_Test(t *testing.T) {
 
 func TestRequest_Send(t *testing.T) {
 	NewClient(t).
-		Get("https://api.github.com/users/Hexilee").
+		Get("https://api.github.com/users/zhwei820").
 		Send().
 		StatusOK().
 		JSON().
-		String("login", "Hexilee")
+		String("login", "zhwei820")
 }
 
 func TestRequest_AddCookie(t *testing.T) {
