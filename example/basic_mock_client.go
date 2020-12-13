@@ -1,14 +1,18 @@
 package example
 
 import (
-	"github.com/labstack/echo"
 	"io"
 	"net/http"
+
+	"github.com/gogf/gf/frame/g"
+	"github.com/gogf/gf/net/ghttp"
+	"github.com/labstack/echo"
 )
 
 var (
-	Mux    *http.ServeMux
-	server *echo.Echo
+	Mux         *http.ServeMux
+	ghttpServer *ghttp.Server
+	server      *echo.Echo
 )
 
 func init() {
@@ -16,6 +20,11 @@ func init() {
 	Mux.HandleFunc("/name", NameHandler)
 	server = echo.New()
 	server.GET("/name", NameHandlerEcho)
+
+	ghttpServer = g.Server()
+	ghttpServer.BindHandler("/", func(r *ghttp.Request) {
+		r.Response.Write(g.Map{"name": "hexi"})
+	})
 }
 
 func NameHandler(w http.ResponseWriter, req *http.Request) {
